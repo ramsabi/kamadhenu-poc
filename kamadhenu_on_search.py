@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 import uvicorn
 import os
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
 
 app = FastAPI()
 
@@ -14,8 +14,10 @@ async def on_search(request: Request):
 
 @app.get("/ondc-site-verification.html")
 async def serve_verification():
-    file_path = os.path.join(os.path.dirname(__file__), "ondc-site-verification.html")
-    return FileResponse(file_path, media_type="text/plain")
+    return Response(
+        content="kamadhenu-poc.onrender.com",
+        media_type="text/plain"
+    )
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
