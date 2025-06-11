@@ -14,7 +14,8 @@ async def on_search(request: Request):
 
 @app.get("/ondc-site-verification.html")
 async def serve_verification():
-    return FileResponse("ondc-site-verification.html", media_type="text/plain")
+    file_path = os.path.join(os.path.dirname(__file__), "ondc-site-verification.html")
+    return FileResponse(file_path, media_type="text/plain")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
