@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: kamadhenu-poc
+    env: python
+    buildCommand: ""
+    startCommand: uvicorn kamadhenu_on_search:app --host 0.0.0.0 --port $PORT
+    plan: free
