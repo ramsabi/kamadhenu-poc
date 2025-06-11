@@ -14,7 +14,7 @@ async def on_search(request: Request):
 
 @app.get("/ondc-site-verification.html", response_class=PlainTextResponse)
 async def serve_verification():
-    return "F1EFhxjgxRDNPFXFZbEkWx+Km7Ay1C3Rz+NTslMcnb0="
+    return "kamadhenu-poc.onrender.com"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
