@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 import uvicorn
 import os
-from fastapi.responses import Response
+from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
@@ -12,12 +12,9 @@ async def on_search(request: Request):
     print(body)
     return {"message": "Kamadhenu received the rice list 🐄🍚"}
 
-@app.get("/ondc-site-verification.html")
+@app.get("/ondc-site-verification.html", response_class=PlainTextResponse)
 async def serve_verification():
-    return Response(
-        content="kamadhenu-poc.onrender.com",
-        media_type="text/plain"
-    )
+    return "kamadhenu-poc.onrender.com"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
