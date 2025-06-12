@@ -39,12 +39,19 @@ async def on_search(request: Request):
 async def on_subscribe(request: Request):
     try:
         body = await request.json()
+        print("🔔 Raw ONDC callback body:")
+        print(body)
+
         message = body.get("message", {})
+        print("🔍 Extracted 'message' block:")
+        print(message)
+
         sender_pub_key_b64 = message.get("sender_public_key")
         encrypted_payload_b64 = message.get("encrypted_payload")
 
         if not sender_pub_key_b64 or not encrypted_payload_b64:
-            return JSONResponse(content={"error": "Missing required fields"}, status_code=400)
+            print("⚠️ Missing 'sender_public_key' or 'encrypted_payload'")
+            return JSONResponse(content={"error": "Missing required fields"}, status_code=200)
 
         sender_pub_key_bytes = b64decode(sender_pub_key_b64)
         sender_pub_key = PublicKey(sender_pub_key_bytes)
@@ -52,15 +59,19 @@ async def on_subscribe(request: Request):
         box = Box(private_key, sender_pub_key)
         decrypted = box.decrypt(b64decode(encrypted_payload_b64)).decode('utf-8')
 
-        print("Decrypted ONDC payload:")
+        print("✅ Decrypted ONDC payload:")
         print(decrypted)
 
         return {"status": "success", "message": decrypted}
 
     except CryptoError:
+        print("❌ Decryption failed — CryptoError")
         return JSONResponse(content={"error": "Decryption failed"}, status_code=403)
+
     except Exception as e:
+        print(f"💥 Internal error: {e}")
         return JSONResponse(content={"error": str(e)}, status_code=500)
+
 
 @app.get("/ondc-site-verification.html")
 async def serve_verification_file():
