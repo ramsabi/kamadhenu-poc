@@ -42,6 +42,13 @@ async def on_subscribe(request: Request):
         print("🔔 Raw ONDC callback body:")
         print(body)
 
+        # Step 1: Handle ONDC challenge verification
+        if "challenge" in body:
+            challenge = body["challenge"]
+            print(f"⚡ Responding to ONDC challenge: {challenge}")
+            return {"challenge": challenge}
+
+        # Step 2: Handle encrypted callback
         message = body.get("message", {})
         print("🔍 Extracted 'message' block:")
         print(message)
@@ -71,6 +78,7 @@ async def on_subscribe(request: Request):
     except Exception as e:
         print(f"💥 Internal error: {e}")
         return JSONResponse(content={"error": str(e)}, status_code=500)
+
 
 
 @app.get("/ondc-site-verification.html")
