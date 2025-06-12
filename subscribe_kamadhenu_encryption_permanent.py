@@ -36,10 +36,10 @@ payload = {
       "unique_key_id": "56faee8c-52c6-4bf3-a4df-40bd32930934",
       "callback_url": "/on_search",
       "key_pair": {
-        "signing_public_key": "65OofsUIgk+KrG1dHS0h/1rp7yC6cVE9v6TJRn8ZG9g=",
-        "encryption_public_key": "MCowBQYDK2VuAyEA2WMWzMF06jHi4bIq/4mAgemhbTNK8lTU4tTt0ez2vUo=",
-        "valid_from": "2025-06-12T06:56:42Z",
-        "valid_until": "2026-06-12T06:56:42Z"}
+        "signing_public_key": "6JWP6nwdpl+qzEL9LTPUCik8t9O5bT3RlPUVh6hFgJ4=",
+        "encryption_public_key": "MCowBQYDK2VuAyEAZqx0q4CIVzPHU6sYyz2vxn4HcMkmA28KzXqC0xasQHc=",
+        "valid_from": "2025-06-12T09:10:00.000Z",
+        "valid_until": "2026-06-12T09:10:00.000Z"}
         },
     "network_participant": [
       {
