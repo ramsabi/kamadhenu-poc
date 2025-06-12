@@ -1,8 +1,12 @@
 import requests
 
 url = "https://staging.registry.ondc.org/subscribe"
+
+signature = "ijfa1r1frxXS+vjav5itYbK+x2NBLUAkT0DceRM0eMqpGH/HNU1kXvQq/+9s0bZNYoeeU5YC6fVdrY3L6wv7BQ=="
+
 headers = {
-  "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Authorization": f'Signature keyId="kamadhenu-poc.onrender.com",algorithm="ed25519",signature="{signature}"'
 }
 
 payload = {
