@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request
+import uvicorn
 import os
 
 app = FastAPI()
@@ -10,10 +10,6 @@ async def on_search(request: Request):
     print("Received on_search callback:")
     print(body)
     return {"message": "Kamadhenu received the rice list 🐄🍚"}
-
-@app.get("/ondc-site-verification.html")
-async def serve_verification_file():
-    return FileResponse("ondc-site-verification.html", media_type='text/html')
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
