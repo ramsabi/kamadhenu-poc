@@ -38,8 +38,8 @@ payload = {
       "key_pair": {
         "signing_public_key": "6JWP6nwdpl+qzEL9LTPUCik8t9O5bT3RlPUVh6hFgJ4=",
         "encryption_public_key": "o2nCXOZ76JqpkbfDxusRtWb7E4b3vYz3h47OtZ95Snc=",
-        "valid_from": "2025-06-12T00:00:00.000Z",
-        "valid_until": "2026-06-12T00:00:00.000Z"}
+        "valid_from": "2025-06-11T12:00:00.291Z",
+        "valid_until": "2026-06-12T00:00:00.291Z"}
         },
     "network_participant": [
       {
