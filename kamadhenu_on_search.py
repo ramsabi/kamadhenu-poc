@@ -17,9 +17,16 @@ ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="
 REQUEST_ID = "56faee8c-52c6-4bf3-a4df-40bd32930934"  # Unique request ID for tracking
 SIGNING_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMXq4UcToADF6gseOyBJ2vTycdrWeFzQ=="  # Kamadhenu's signing key for request_id signing
 
-# Decode the base64 private key for encryption (no DER required for private key)
+# Decode the base64 private key (which is currently base64 encoded)
 private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
+
+# Check if the private key is 32 bytes long (NaCl requires this length)
+if len(private_key_bytes) != 32:
+    raise ValueError("Private key must be 32 bytes long")
+
+# Create the PrivateKey object using the 32-byte raw key
 private_key = PrivateKey(private_key_bytes)
+
 
 @app.post("/on_search")
 async def on_search(request: Request):
