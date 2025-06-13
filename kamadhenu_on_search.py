@@ -19,6 +19,11 @@ REQUEST_ID = "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4"  # Unique request ID for tra
 SIGNING_PRIVATE_KEY = "QQ8CQupV64cMbC5+HabvzO6Pr+Ssh6YR9lrdLsukRMc="
 signing_key = SigningKey(b64decode(SIGNING_PRIVATE_KEY))
 
+# ✅ Convert encryption private key for decryption
+private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
+if len(private_key_bytes) != 32:
+    raise ValueError("Private encryption key must be 32 bytes long")
+private_key = PrivateKey(private_key_bytes)
 
 @app.post("/on_search")
 async def on_search(request: Request):
@@ -53,14 +58,8 @@ async def on_subscribe(request: Request):
             return JSONResponse(content={"error": "Missing required fields"}, status_code=200)
 
         sender_pub_key_bytes = b64decode(sender_pub_key_b64)
-        sender_pub_key = PublicKey(sender_pub_key_bytes)
-        
-        # ✅ INSERT THIS HERE (REQUIRED FOR decryption)
-        private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
-        if len(private_key_bytes) != 32:
-            raise ValueError("Private encryption key must be 32 bytes long")
-        private_key = PrivateKey(private_key_bytes)
-
+        sender_pub_key = PublicKey(sender_pub_key_bytes)     
+      
         # Decrypt the payload using Kamadhenu's private key and sender's public key
         box = Box(private_key, sender_pub_key)
         decrypted = box.decrypt(b64decode(encrypted_payload_b64)).decode('utf-8')
