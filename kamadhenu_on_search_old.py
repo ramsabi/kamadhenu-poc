@@ -11,14 +11,11 @@ from cryptography.hazmat.backends import default_backend
 
 app = FastAPI()
 
-# Constants for decryption and signing
-ENCRYPTION_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMXq4UcToADF6gseOyBJ2vTycdrWeFzQ=="  # Kamadhenu's private encryption key
-ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="  # ONDC's public key (staging)
-REQUEST_ID = "56faee8c-52c6-4bf3-a4df-40bd32930934"  # Unique request ID for tracking
-SIGNING_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMXq4UcToADF6gseOyBJ2vTycdrWeFzQ=="  # Kamadhenu's signing key for request_id signing
+# Base64 DER-encoded ONDC encryption private key (from cryptic_utils.py)
+ENCRYPTION_PRIVATE_KEY_B64 = "MC4CAQAwBQYDK2VuBCIEIMhKv07BXNkjg/TpZwBC/CDDjHP9LwwQTbw04NV06g5Q"
 
-# Decode DER to 32-byte raw private key for encryption (if you're using that method)
-encryption_der_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
+# Decode DER to 32-byte raw private key
+encryption_der_bytes = b64decode(ENCRYPTION_PRIVATE_KEY_B64)
 private_key_obj = serialization.load_der_private_key(
     encryption_der_bytes,
     password=None,
@@ -30,7 +27,6 @@ raw_private_key_bytes = private_key_obj.private_bytes(
     encryption_algorithm=serialization.NoEncryption()
 )
 private_key = PrivateKey(raw_private_key_bytes)
-
 
 @app.post("/on_search")
 async def on_search(request: Request):
