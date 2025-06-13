@@ -54,6 +54,10 @@ async def on_subscribe(request: Request):
 async def serve_verification_file():
     return FileResponse("ondc-site-verification.html", media_type='text/html')
 
+@app.get("/")
+async def root():
+    return {"status": "Kamadhenu Service Active"}
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     uvicorn.run("kamadhenu_on_search:app", host="0.0.0.0", port=port)
