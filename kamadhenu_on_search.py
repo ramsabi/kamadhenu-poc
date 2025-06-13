@@ -18,7 +18,24 @@ ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="
 REQUEST_ID = "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4"  # Unique request ID for tracking
 SIGNING_PRIVATE_KEY = "QQ8CQupV64cMbC5+HabvzO6Pr+Ssh6YR9lrdLsukRMc="
 signing_key = SigningKey(b64decode(SIGNING_PRIVATE_KEY))
-private_key = PrivateKey(b64decode(ENCRYPTION_PRIVATE_KEY))  # No length checks!
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
+from base64 import b64decode
+from nacl.public import PrivateKey
+
+encryption_der_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
+private_key_obj = serialization.load_der_private_key(
+    encryption_der_bytes,
+    password=None,
+    backend=default_backend()
+)
+raw_private_key_bytes = private_key_obj.private_bytes(
+    encoding=serialization.Encoding.Raw,
+    format=serialization.PrivateFormat.Raw,
+    encryption_algorithm=serialization.NoEncryption()
+)
+private_key = PrivateKey(raw_private_key_bytes)
 
 @app.post("/on_search")
 async def on_search(request: Request):
