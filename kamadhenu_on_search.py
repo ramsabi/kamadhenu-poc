@@ -20,18 +20,13 @@ SIGNING_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMX
 # Decode the base64 private key (which is currently base64 encoded)
 private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
 
-# Print out the decoded private key for debugging
-print(f"Decoded private key bytes: {private_key_bytes}")
-
-# Check the length of the private key after decoding
-print(f"Decoded private key length: {len(private_key_bytes)} bytes")
-
 # Check if the private key is 32 bytes long (NaCl requires this length)
 if len(private_key_bytes) != 32:
     raise ValueError(f"Private key must be 32 bytes long, but got {len(private_key_bytes)} bytes")
 
 # Create the PrivateKey object using the 32-byte raw key
 private_key = PrivateKey(private_key_bytes)
+
 
 @app.post("/on_search")
 async def on_search(request: Request):
