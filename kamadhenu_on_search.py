@@ -20,7 +20,11 @@ SIGNING_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMX
 # Decode the base64 private key (which is currently base64 encoded)
 private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
 
-# Check if the private key is 32 bytes long (NaCl requires this length)
+# If the key is longer than 32 bytes, trim it to 32 bytes (NaCl requirement)
+if len(private_key_bytes) > 32:
+    private_key_bytes = private_key_bytes[:32]
+
+# Check if the private key is now 32 bytes long
 if len(private_key_bytes) != 32:
     raise ValueError(f"Private key must be 32 bytes long, but got {len(private_key_bytes)} bytes")
 
