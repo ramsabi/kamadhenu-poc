@@ -18,6 +18,7 @@ ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="
 REQUEST_ID = "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4"  # Unique request ID for tracking
 SIGNING_PRIVATE_KEY = "QQ8CQupV64cMbC5+HabvzO6Pr+Ssh6YR9lrdLsukRMc="
 signing_key = SigningKey(b64decode(SIGNING_PRIVATE_KEY))
+private_key = PrivateKey(b64decode(ENCRYPTION_PRIVATE_KEY))  # No length checks!
 
 @app.post("/on_search")
 async def on_search(request: Request):
