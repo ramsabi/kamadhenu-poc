@@ -13,7 +13,7 @@ from cryptography.hazmat.backends import default_backend
 app = FastAPI()
 
 # Constants for decryption and signing
-ENCRYPTION_PRIVATE_KEY = "wK8zkn0OjR3GnE1l2Je4Jm1UgJK0nJNHjk4NPkAOwHI="  # Kamadhenu's private encryption key (base64 encoded)
+ENCRYPTION_PRIVATE_KEY = "eOnH1e0z+w9tsZAHQZsHfqRx+R6cdjZ/rcD2UjjY7bd91m3NOodL1FzPbMXXcJL+zMf93rRXSozrqVYvElSmQA=="  # Kamadhenu's private encryption key (base64 encoded)
 ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="  # ONDC's public key (staging)
 REQUEST_ID = "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4"  # Unique request ID for tracking
 SIGNING_PRIVATE_KEY = "QQ8CQupV64cMbC5+HabvzO6Pr+Ssh6YR9lrdLsukRMc="
@@ -52,8 +52,6 @@ async def on_subscribe(request: Request):
             return JSONResponse(content={"error": "Missing required fields"}, status_code=200)
 
         # Decryption logic — pure and successful 🔥
-        sender_pub_key = PublicKey(b64decode(sender_pub_key_b64))
-        private_key = PrivateKey(b64decode(ENCRYPTION_PRIVATE_KEY))
         box = Box(private_key, sender_pub_key)
         decrypted = box.decrypt(b64decode(encrypted_payload_b64)).decode('utf-8')
 
