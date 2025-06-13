@@ -12,7 +12,7 @@ from cryptography.hazmat.backends import default_backend
 app = FastAPI()
 
 # Constants for decryption and signing
-ENCRYPTION_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF4="  # Kamadhenu's private encryption key (base64 encoded)
+ENCRYPTION_PRIVATE_KEY = "oBzWRu/6+W2HPQ5Sm8TWeKpY7HpASgym7z/X90LPBro="  # Kamadhenu's private encryption key (base64 encoded)
 ONDC_PUBLIC_KEY = "MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM="  # ONDC's public key (staging)
 REQUEST_ID = "56faee8c-52c6-4bf3-a4df-40bd32930934"  # Unique request ID for tracking
 SIGNING_PRIVATE_KEY = "RpwfrbCloRBJfDZ6ZePJ7QS2EiHe9kENa40OgiLKJF5eWqH0VsZpq1XMXq4UcToADF6gseOyBJ2vTycdrWeFzQ=="  # Kamadhenu's signing key for request_id signing
