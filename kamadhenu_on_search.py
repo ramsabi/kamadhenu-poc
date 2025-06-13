@@ -55,12 +55,6 @@ async def on_subscribe(request: Request):
         sender_pub_key_bytes = b64decode(sender_pub_key_b64)
         sender_pub_key = PublicKey(sender_pub_key_bytes)
         
-        # ✅ INSERT THIS HERE (REQUIRED FOR decryption)
-        private_key_bytes = b64decode(ENCRYPTION_PRIVATE_KEY)
-        if len(private_key_bytes) != 32:
-            raise ValueError("Private encryption key must be 32 bytes long")
-        private_key = PrivateKey(private_key_bytes)
-
         # Decrypt the payload using Kamadhenu's private key and sender's public key
         box = Box(private_key, sender_pub_key)
         decrypted = box.decrypt(b64decode(encrypted_payload_b64)).decode('utf-8')
