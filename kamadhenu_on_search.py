@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from nacl.signing import SigningKey
 from fastapi.responses import JSONResponse
 from base64 import b64decode
 import os
