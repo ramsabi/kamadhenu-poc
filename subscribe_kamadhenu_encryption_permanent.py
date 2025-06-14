@@ -2,7 +2,7 @@ import requests
 
 url = "https://staging.registry.ondc.org/subscribe"
 
-signature = "cbUPWDEoKmTP566DRwtmFv9vdrYcKGXKoS4iJN580WqwMhSHIKm6C7rzY4DtnMcPa01WUrKy+Wfqe1L5K+4UBA=="
+signature = "cbUPWDEoKmTP566DRwtmFv9vdrYcKGXKoS4iJN580WqwMhSHIKm6C7rzY4DtnMcPa01WUrKy+Wfqe1L5K+4UBA==	"
 
 headers = {
     "Content-Type": "application/json",
