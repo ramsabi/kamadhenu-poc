@@ -54,7 +54,7 @@ async def on_subscribe(request: Request):
 async def serve_verification_file():
     return FileResponse("ondc-site-verification.html", media_type='text/html')
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root():
     return {"status": "Kamadhenu Service Active"}
 
