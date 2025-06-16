@@ -1,12 +1,12 @@
 from nacl.signing import SigningKey
-from base64 import b64encode, b64decode
+from base64 import b64decode, b64encode
 import json
 
-# Your signing private key (base64 string)
-signing_private_key_b64 = "QQ8CQupV64cMbC5+HabvzO6Pr+Ssh6YR9lrdLsukRMc="
+# Signing key
+signing_private_key_b64 = "scxpvbEecQKghnnhVgfBvq/o6cy7VwynSJJsUiZPvg3LQF5MRZQjITS4tqabWzJACFVDMI5/dS5KAAHrSXGS+w=="
 signing_key = SigningKey(b64decode(signing_private_key_b64))
 
-# Your subscribe payload (as sent)
+# Your clean payload
 payload = {
   "context": {
     "operation": {
@@ -15,7 +15,7 @@ payload = {
   },
   "message": {
     "request_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
-    "timestamp": "2025-06-16T09:38:21.971Z",
+    "timestamp": "2025-06-17T02:42:21.971Z",
     "entity": {
       "gst": {
         "legal_entity_name": "Janmasoft Excelutions LLP",
@@ -36,8 +36,8 @@ payload = {
       "unique_key_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
       "callback_url": "/on_subscribe",
       "key_pair": {
-        "signing_public_key": "4JAK/9yauqLMOuh0J0GR2UfdnprwCzNcFtI8EgO6tJU=",
-        "encryption_public_key": "MCowBQYDK2VuAyEARO4+4rbFiqHFJsewSS1wdaKjWWmXqMQJwPF7HgjLWWY=",
+        "signing_public_key": "y0BeTEWUIyE0uLamm1syQAhVQzCOf3UuSgAB60lxkvs=",
+        "encryption_public_key": "MCowBQYDK2VuAyEAm8YhrgoYbiLwibQwwZj/phGP+Y8dxULSbB8nujPrTxs=",
         "valid_from": "2025-06-13T09:45:00.000Z",
         "valid_until": "2026-06-13T09:45:00.000Z"
       }
@@ -54,7 +54,7 @@ payload = {
   }
 }
 
-# Canonical JSON string
+# Canonical JSON
 payload_str = json.dumps(payload, separators=(',', ':'), ensure_ascii=False)
 
 # Sign
@@ -63,3 +63,4 @@ signature_b64 = b64encode(signed.signature).decode('utf-8')
 
 print("Signature for Authorization header:")
 print(signature_b64)
+
