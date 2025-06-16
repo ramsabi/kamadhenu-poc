@@ -36,11 +36,14 @@ def on_subscribe():
     box = Box(priv, ondc_pub)
     decrypted = box.decrypt(encrypted_challenge)
     return Response(decrypted, mimetype='text/plain')
+    except Exception as e:
+    return Response(f"Decryption failed: {str(e)}", status=400, mimetype='text/plain')
 
 @app.route("/ondc-site-verification.html", methods=["GET"])
 def site_verification():
     html_content = f'<html><head><meta name="ondc-site-verification" content="{REQUEST_ID}"/></head><body>ONDC Site Verification</body></html>'
     return Response(html_content, mimetype='text/html')
+    
 
 @app.route("/")
 def index():
