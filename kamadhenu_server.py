@@ -1,4 +1,3 @@
-```python
 from flask import Flask, request, jsonify, Response
 from nacl.public import PrivateKey, PublicKey, Box
 from base64 import b64decode, b64encode
