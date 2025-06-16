@@ -2,6 +2,8 @@ import requests
 
 url = "https://staging.registry.ondc.org/subscribe"
 
+signature = "uQg0t9jf73rQOuxa/1+6pR9SwVauOqdfnUKE1WAyCderTipIPtbCQZJ28GFLktK3NHeBkpdhum5xZ7RcAGYhBQ=="
+
 headers = {
     "Content-Type": "application/json",
     "Authorization": f'Signature keyId="kamadhenu-poc.onrender.com",algorithm="ed25519",signature="uQg0t9jf73rQOuxa/1+6pR9SwVauOqdfnUKE1WAyCderTipIPtbCQZJ28GFLktK3NHeBkpdhum5xZ7RcAGYhBQ=="'
@@ -15,7 +17,7 @@ payload = {
   },
   "message": {
     "request_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
-    "timestamp": "2025-06-17T02:42:21.971Z",
+    "timestamp": "2025-06-17T03:14:21.971Z",
     "entity": {
       "gst": {
         "legal_entity_name": "Janmasoft Excelutions LLP",
