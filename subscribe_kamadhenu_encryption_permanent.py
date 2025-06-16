@@ -2,11 +2,9 @@ import requests
 
 url = "https://staging.registry.ondc.org/subscribe"
 
-signature = "uQg0t9jf73rQOuxa/1+6pR9SwVauOqdfnUKE1WAyCderTipIPtbCQZJ28GFLktK3NHeBkpdhum5xZ7RcAGYhBQ=="
-
 headers = {
     "Content-Type": "application/json",
-    "Authorization": f'Signature keyId="kamadhenu-poc.onrender.com",algorithm="ed25519",signature="{signature}"'
+    "Authorization": f'Signature keyId="kamadhenu-poc.onrender.com",algorithm="ed25519",signature="uQg0t9jf73rQOuxa/1+6pR9SwVauOqdfnUKE1WAyCderTipIPtbCQZJ28GFLktK3NHeBkpdhum5xZ7RcAGYhBQ=="'
 }
 
 payload = {
@@ -40,10 +38,10 @@ payload = {
       "unique_key_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
       "callback_url": "/on_subscribe",
       "key_pair": {
-        "signing_public_key": "4JAK/9yauqLMOuh0J0GR2UfdnprwCzNcFtI8EgO6tJU=",
-        "encryption_public_key": "MCowBQYDK2VuAyEARO4+4rbFiqHFJsewSS1wdaKjWWmXqMQJwPF7HgjLWWY=",
-        "valid_from": "2025-06-13T09:45:00.000Z",
-        "valid_until": "2026-06-13T09:45:00.000Z"}
+        "signing_public_key": "y0BeTEWUIyE0uLamm1syQAhVQzCOf3UuSgAB60lxkvs=",
+        "encryption_public_key": "MCowBQYDK2VuAyEAm8YhrgoYbiLwibQwwZj/phGP+Y8dxULSbB8nujPrTxs=",
+        "valid_from": "2025-06-17T03:45:00.000Z",
+        "valid_until": "2026-06-13T03:44:00.000Z"}
         },
     "network_participant": [
       {
