@@ -1,15 +1,4 @@
-import requests
-
-url = "https://staging.registry.ondc.org/subscribe"
-
-signature = "nyUfWI29uecYq7tlY65N/8wh/tGAXtS1oeFm33GvG99zeq866JulW3NeeFiRx/3mq27miO8BNlCFI8hnZxgPAQ=="
-
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": f'Signature keyId="kamadhenu-poc.onrender.com",algorithm="ed25519",signature="{signature}"'
-}
-
-payload = {
+{
   "context": {
     "operation": {
       "ops_no": 1
@@ -17,14 +6,12 @@ payload = {
   },
   "message": {
     "request_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
-    "timestamp": "2025-06-17T02:16:21.971Z",
+    "timestamp": "2025-06-17T01:13:21.971Z",
     "entity": {
       "gst": {
         "legal_entity_name": "Janmasoft Excelutions LLP",
         "business_address": "42 Moo Street, Cowtown, Bangalore, Karnataka 560001",
-        "city_code": [
-          "std:080"
-        ],
+        "city_code": ["std:080"],
         "gst_no": "29ABCDE1234F2Z5"
       },
       "pan": {
@@ -40,25 +27,20 @@ payload = {
       "unique_key_id": "a2c0e81b-fdb1-4c94-8b0f-eef0babc29c4",
       "callback_url": "/on_search",
       "key_pair": {
-        "signing_public_key": "4JAK/9yauqLMOuh0J0GR2UfdnprwCzNcFtI8EgO6tJU=",
-        "encryption_public_key": "MCowBQYDK2VuAyEARO4+4rbFiqHFJsewSS1wdaKjWWmXqMQJwPF7HgjLWWY=",
-        "valid_from": "2025-06-13T09:45:00.000Z",
-        "valid_until": "2026-06-13T09:45:00.000Z"}
-        },
+        "signing_public_key": "y0BeTEWUIyE0uLamm1syQAhVQzCOf3UuSgAB60lxkvs=",
+        "encryption_public_key": "MCowBQYDK2VuAyEAm8YhrgoYbiLwibQwwZj/phGP+Y8dxULSbB8nujPrTxs=",
+        "valid_from": "2025-06-17T01:35:00.000Z",
+        "valid_until": "2026-06-17T01:34:00.000Z"
+      }
+    },
     "network_participant": [
       {
         "subscriber_url": "/bapl",
         "domain": "ONDC:TRV10",
         "type": "buyerApp",
-        "msn": False,
-        "city_code": [
-          "std:080"
-        ]
+        "msn": false,
+        "city_code": ["std:080"]
       }
     ]
   }
 }
-
-response = requests.post(url, headers=headers, json=payload, verify=False)
-print("Status Code:", response.status_code)
-print("Response:", response.text)
